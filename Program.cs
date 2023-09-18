@@ -1,45 +1,32 @@
-﻿// Declare Variables and then initialize to zero.
-int num1 = 0; int num2 = 0;
-
-// Display title as the C# console app.
-Console.WriteLine("Console Calculator in C#\r");
-Console.WriteLine("------------------------\n");
-
-// Ask the user to type the first number.
-Console.WriteLine("Type a number, and then press Enter");
-num1  = Convert.ToDouble(Console.ReadLine());
-
-
-// Ask the user to type the second number.
-Console.WriteLine("Type another number, and the press Enter");
-num2 = Convert.ToDouble(Console.ReadLine());
-
-// Ask the user to choose an option.
-Console.WriteLine("Choose an option from the following list:");
-Console.WriteLine("\ta - Add");
-Console.WriteLine("\ts - Subtract");
-Console.WriteLine("\tm - Multiply");
-Console.WriteLine("\td -  Divide");
-Console.Write("Your Option? ");
-
-// Use a switch statement to do the math.
-switch (Console.ReadLine())
-{
-    case "a":
-        Console.WriteLine($"Your result: {num1} + {num2} = " + (num1 + num2));
-        break;
-    case "s":
-        Console.WriteLine($"Your result: {num1} - {num2} = " + (num1 - num2));
-        break;
-    case "m":
-        Console.WriteLine($"Your result: {num1} * {num2} = " + (num1 * num2));
-        break;
-    case "d":
-        Console.WriteLine($"Your result: {num1} / {num2} = " + (num1 / num2));
-        break;
+﻿
+    class Calculator
+    {
+        public static double DoOperation(double num1, double num2, string op) 
+        {
+        double result = double.NaN; // Default value is "not-a-number" if an operation , such as division, could result an error.
+        
+        // Use a switch statement to do the math.
+        switch (op) 
+        {
+            case "a":
+                result = num1 + num2;
+                break;
+            case "s":
+                result = num1 - num2;
+                break;
+            case "m":
+                result = num1 * num2;
+                break;
+            case "d":
+                // Ask the user to enter a non-zero divisor
+                if (num2 != 0)
+                {
+                    result = num1 / num2;   
+                }
+                break;
+                //Return text for an incorrect option entry default.
+                break;
+        }
+        return result;
+    }
 }
-
-// Wait for the user to respond before closing.
-Console.WriteLine("Press any key to close the Calculator console app...");
-Console.ReadKey();
-
